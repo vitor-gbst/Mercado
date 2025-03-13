@@ -1,0 +1,73 @@
+package main;
+
+import modelo.Produto;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Mercado {
+    private static Scanner input = new Scanner(System.in);
+    private static ArrayList <Produto> produtos;
+    private static Map <Produto, Integer> carrinho;
+
+    public static void main(String[] args) {
+        produtos = new ArrayList<>();
+        carrinho = new HashMap<>();
+        menu();
+    }
+    private static void menu(){
+        int option;
+
+        while (true){
+            System.out.println("-------------------------------------");
+            System.out.println("--------Bem-vindo ao sistema!--------");
+            System.out.println("-------------------------------------");
+            System.out.println("*** Selecione a operação desejada ***");
+            System.out.println(" ___________________________________ ");
+            System.out.println("|       Opção [1] - Cadastrar       |");
+            System.out.println("|       Opção [2] - Listar          |");
+            System.out.println("|       Opção [3] - Comprar         |");
+            System.out.println("|       Opção [4] - Carrinho        |");
+            System.out.println("|       Opção [5] - Sair            |");
+            System.out.println(" ----------------------------------- ");
+            System.out.println("Escolher: ");
+
+            if (input.hasNextInt()){
+                option = input.nextInt();
+                input.nextLine();
+                if(option >=1 && option <=5){
+                    break;
+                }
+                else {
+                    System.out.println("Erro, digite uma das cinco opções.");
+                }
+            }else {
+                System.out.println("Erro, digite um valor válido.");
+                input.nextLine();
+            }
+        }
+
+            switch (option){
+                case 1:
+                    cadastrarProduto();
+                    break;
+                case 2:
+                    listarProduto();
+                    break;
+                case 3:
+                    comprarProduto();
+                    break;
+                case 4:
+                    verCarrinho();
+                    break;
+                case 5:
+                    System.out.println("Obrigado pela preferência!");
+                    System.exit(0);
+                    input.close();
+                    break;
+            }
+
+    }
+}
