@@ -1,12 +1,11 @@
-# 🏪 Mercado - Sistema de Gerenciamento
+# 🏪 Estoque - Sistema de Estoque
 
-Este é um sistema simples para gerenciamento de um mercado, onde é possível cadastrar, listar, comprar produtos e visualizar o carrinho.
+Este é um sistema simples para gerenciamento de estoque, onde é possível cadastrar, listar, entrade e saída de produtos.
 
 ## 📌 Funcionalidades
 - 📦 Cadastrar produtos
 - 📃 Listar produtos disponíveis
-- 🛒 Adicionar produtos ao carrinho
-- 💰 Finalizar compra
+- 🛒 Entrada e saída de produtos
 
 📜 Pré-requisitos
 Java 17+
