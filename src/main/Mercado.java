@@ -28,9 +28,8 @@ public class Mercado {
             System.out.println(" ___________________________________ ");
             System.out.println("|       Opção [1] - Cadastrar       |");
             System.out.println("|       Opção [2] - Listar          |");
-            System.out.println("|       Opção [3] - Comprar         |");
-            System.out.println("|       Opção [4] - Carrinho        |");
-            System.out.println("|       Opção [5] - Sair            |");
+            System.out.println("|       Opção [3] - Entrada e Saída |");
+            System.out.println("|       Opção [4] - Sair            |");
             System.out.println(" ----------------------------------- ");
             System.out.println("Escolher: ");
 
@@ -57,12 +56,9 @@ public class Mercado {
                     listarProduto();
                     break;
                 case 3:
-                    comprarProduto();
+                    entradaEsaida();
                     break;
                 case 4:
-                    verCarrinho();
-                    break;
-                case 5:
                     System.out.println("Obrigado pela preferência!");
                     System.exit(0);
                     input.close();
