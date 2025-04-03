@@ -5,12 +5,14 @@ import modelo.Produto;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static main.Mercado.menu;
+
 public class cadastrarProduto {
 
-    private ArrayList<Produto> listaProdutos = new ArrayList<>();
+    public static ArrayList<Produto> listaProdutos = new ArrayList<>();
 
 
-    public void cadastrar{
+    public static void cadastrar(){
         Scanner inputCadastro = new Scanner(System.in);
 
         System.out.println("Informe o nome do produto: ");
@@ -27,4 +29,6 @@ public class cadastrarProduto {
 
         System.out.println("Produto cadastrado com sucesso!");
         inputCadastro.close();
+        menu();
+    }
 }

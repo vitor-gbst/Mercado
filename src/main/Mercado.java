@@ -10,11 +10,9 @@ import java.util.Scanner;
 public class Mercado {
     private static Scanner input = new Scanner(System.in);
     private static ArrayList <Produto> produtos;
-    private static Map <Produto, Integer> carrinho;
 
     public static void main(String[] args) {
         produtos = new ArrayList<>();
-        carrinho = new HashMap<>();
         menu();
     }
     private static void menu(){
@@ -50,14 +48,14 @@ public class Mercado {
 
             switch (option){
                 case 1:
-                    cadastrarProduto();
+                    cadastrarProduto.cadastrar();
                     break;
                 case 2:
-                    listarProduto();
+                    ListarProduto.listar();
                     break;
-                case 3:
+                /*case 3:
                     entradaEsaida();
-                    break;
+                    break;*/
                 case 4:
                     System.out.println("Obrigado pela preferência!");
                     System.exit(0);
