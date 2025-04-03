@@ -3,8 +3,6 @@ package main;
 import modelo.Produto;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Mercado {
@@ -15,7 +13,7 @@ public class Mercado {
         produtos = new ArrayList<>();
         menu();
     }
-    private static void menu(){
+    public static void menu(){
         int option;
 
         while (true){
@@ -59,7 +57,6 @@ public class Mercado {
                 case 4:
                     System.out.println("Obrigado pela preferência!");
                     System.exit(0);
-                    input.close();
                     break;
             }
 

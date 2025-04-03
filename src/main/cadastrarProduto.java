@@ -28,7 +28,6 @@ public class cadastrarProduto {
         listaProdutos.add(novoProduto);
 
         System.out.println("Produto cadastrado com sucesso!");
-        inputCadastro.close();
         menu();
     }
 }

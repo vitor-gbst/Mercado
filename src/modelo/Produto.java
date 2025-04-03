@@ -47,10 +47,10 @@ public class Produto {
     }
 
     public String toString(){
-        return "Id: " + this.getId() +
-                "\nNome: " + this.getNome()+
-                "\nQuantidade: " + this.getQuantidade()+
-                "\nPreço: " + Utilis.doubleToString(this.getPreco());
+        return "|  Id: [" + this.getId() +"]                          |\n"+
+                "|  Nome: [" + this.getNome()+ "]                   |\n"+
+                "|  Quantidade: [" + this.getQuantidade()+ "]                 |\n" +
+                "|  Preço: [" + Utilis.doubleToString(this.getPreco()) + "]               |";
     }
 
 }
