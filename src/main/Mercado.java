@@ -1,5 +1,6 @@
 package main;
 
+import main.OperacaoEstoque;
 import modelo.Produto;
 
 import java.util.ArrayList;
@@ -22,10 +23,11 @@ public class Mercado {
             System.out.println("-------------------------------------");
             System.out.println("*** Selecione a operação desejada ***");
             System.out.println(" ___________________________________ ");
-            System.out.println("|       Opção [1] - Cadastrar       |");
-            System.out.println("|       Opção [2] - Listar          |");
-            System.out.println("|       Opção [3] - Entrada e Saída |");
-            System.out.println("|       Opção [4] - Sair            |");
+            System.out.println("|      Opção [1] - Cadastrar        |");
+            System.out.println("|      Opção [2] - Listar           |");
+            System.out.println("|      Opção [3] - Entrada Produtos |");
+            System.out.println("|      Opção [4] - Saída Produtos   |");
+            System.out.println("|      Opção [5] - Sair             |");
             System.out.println(" ----------------------------------- ");
             System.out.println("Escolher: ");
 
@@ -51,10 +53,14 @@ public class Mercado {
                 case 2:
                     ListarProduto.listar();
                     break;
-                /*case 3:
-                    entradaEsaida();
+                case 3:
+                    OperacaoEstoque entrada = new Entrada();
+                    entrada.executar();
+                    break;
+                /*case 4:
+                    Saida();
                     break;*/
-                case 4:
+                case 5:
                     System.out.println("Obrigado pela preferência!");
                     System.exit(0);
                     break;
