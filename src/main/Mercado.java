@@ -57,9 +57,11 @@ public class Mercado {
                     OperacaoEstoque entrada = new Entrada();
                     entrada.executar();
                     break;
-                /*case 4:
-                    Saida();
-                    break;*/
+                case 4:
+                    OperacaoEstoque saida = new Saida();
+                    saida.executar();
+                    break;
+
                 case 5:
                     System.out.println("Obrigado pela preferência!");
                     System.exit(0);
