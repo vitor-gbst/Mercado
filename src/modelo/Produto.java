@@ -17,7 +17,7 @@ public class Produto {
         this.quantidade = quantidade;
         Produto.count += 1;
     }
-
+// Getters e setters
     public int getQuantidade() {
         return quantidade;
     }
