@@ -6,7 +6,7 @@ import modelo.Produto;
 import static main.Mercado.menu;
 
 public class Entrada extends OperacaoEstoque {
-
+//Polimorfismo
     @Override
     public void executar() {
         System.out.println("Informe o ID do produto para entrada de estoque:");
