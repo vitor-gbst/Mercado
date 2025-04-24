@@ -37,7 +37,7 @@ public class cadastrarProduto {
         int quantidade = inputCadastro.nextInt();
 
         Produto novoProduto = new Produto(nome, preco, quantidade);
-        listaProdutos.add(novoProduto);// Composição: Adiciona o objeto Produto à lista.
+        listaProdutos.add(novoProduto);
 
         System.out.println("Produto cadastrado com sucesso!");
         menu();
