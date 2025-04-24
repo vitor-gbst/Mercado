@@ -6,6 +6,7 @@ import modelo.Produto;
 import static main.Mercado.menu;
 
 public class Saida extends OperacaoEstoque {
+    // Polimorfismo: sobrescreve método abstrato da classe pai
     @Override
     public void executar() {
         System.out.println("Informe o ID do produto para saída de estoque:");
