@@ -21,7 +21,7 @@ public class ListarProduto {
         }
 
         for(int i = 0; i < listaProdutos.size(); i++){
-            Produto produto = listaProdutos.get(i);// Composição: listaProdutos é uma lista que contém objetos Produto
+            Produto produto = listaProdutos.get(i);// listaProdutos é uma lista que contém objetos Produto
             System.out.println(produto);
             System.out.println(" ___________________________________ \n");
         }
