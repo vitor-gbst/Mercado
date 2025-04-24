@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Mercado {
     private static Scanner input = new Scanner(System.in);
-    private static ArrayList <Produto> produtos;// Composição: Mercado tem uma lista de produtos (ArrayList<Produto>).
+    private static ArrayList <Produto> produtos;
 
     public static void main(String[] args) {
         produtos = new ArrayList<>();
