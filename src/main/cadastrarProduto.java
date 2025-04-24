@@ -9,7 +9,7 @@ import static main.Mercado.menu;
 
 public class cadastrarProduto {
 
-    public static ArrayList<Produto> listaProdutos = new ArrayList<>();
+    public static ArrayList<Produto> listaProdutos = new ArrayList<>();// Composição: listaProdutos é uma lista de objetos Produto.
 
 
     public static void cadastrar(){
