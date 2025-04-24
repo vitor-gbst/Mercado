@@ -30,7 +30,7 @@ public class Mercado {
             System.out.println("|      Opção [5] - Sair             |");
             System.out.println(" ----------------------------------- ");
             System.out.println("Escolher: ");
-
+// Tratamento de erro: garante que a entrada seja um número válido
             if (input.hasNextInt()){
                 option = input.nextInt();
                 input.nextLine();
