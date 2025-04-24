@@ -24,7 +24,7 @@ public class cadastrarProduto {
         while (!precoValido) {
             System.out.println("Informe o preço do produto: ");
             String precoStr = inputCadastro.nextLine();
-//Tratamento de ERROS
+// Tratamento de ERROS: tenta converter String para double
             try {
                 preco = Double.parseDouble(precoStr.replace(",", "."));
                 precoValido = true;
