@@ -1,11 +1,11 @@
 package main;
 
+import modelo.OperacaoEstoque;
 import modelo.Produto;
-import java.util.Scanner;
 
 import static main.Mercado.menu;
 
-public class Entrada extends main.OperacaoEstoque {
+public class Entrada extends OperacaoEstoque {
 
     @Override
     public void executar() {

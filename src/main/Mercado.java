@@ -1,6 +1,6 @@
 package main;
 
-import main.OperacaoEstoque;
+import modelo.OperacaoEstoque;
 import modelo.Produto;
 
 import java.util.ArrayList;

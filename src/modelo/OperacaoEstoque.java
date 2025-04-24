@@ -1,6 +1,5 @@
-package main;
+package modelo;
 
-import modelo.Produto;
 import java.util.Scanner;
 
 import static main.cadastrarProduto.listaProdutos;

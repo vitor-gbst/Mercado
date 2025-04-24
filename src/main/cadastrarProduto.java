@@ -18,8 +18,20 @@ public class cadastrarProduto {
         System.out.println("Informe o nome do produto: ");
         String nome = inputCadastro.nextLine();
 
-        System.out.println("Informe o preço do produto: ");
-        Double preco = inputCadastro.nextDouble();
+        double preco = 0.0;
+        boolean precoValido = false;
+
+        while (!precoValido) {
+            System.out.println("Informe o preço do produto: ");
+            String precoStr = inputCadastro.nextLine();
+
+            try {
+                preco = Double.parseDouble(precoStr.replace(",", "."));
+                precoValido = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Preço inválido. Tente novamente.");
+            }
+        }
 
         System.out.println("Informe a quantidade: ");
         int quantidade = inputCadastro.nextInt();
