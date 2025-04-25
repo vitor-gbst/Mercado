@@ -1,9 +1,8 @@
 package modelo;
 
-import jdk.jshell.execution.Util;
 import utilis.Utilis;
 
-public class Produto {
+public abstract class Produto {
     private static int count = 1;
     private int id;
     private String nome;
@@ -11,11 +10,10 @@ public class Produto {
     private int quantidade;
 
     public Produto(String nome, Double preco, int quantidade) {
-        this.id = Produto.count;
+        this.id = Produto.count++;
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
-        Produto.count += 1;
     }
 
     public int getQuantidade() {
@@ -46,11 +44,14 @@ public class Produto {
         this.preco = preco;
     }
 
-    public String toString(){
-        return "|  Id: [" + this.getId() +"]                          |\n"+
-                "|  Nome: [" + this.getNome()+ "]                   |\n"+
-                "|  Quantidade: [" + this.getQuantidade()+ "]                 |\n" +
-                "|  Preço: [" + Utilis.doubleToString(this.getPreco()) + "]               |";
-    }
+    // ✅ MÉTODO ABSTRATO A SER IMPLEMENTADO POR FRUTA E VERDURA
+    public abstract String getTipo();
 
+    public String toString(){
+        return "|  Id: [" + this.getId() + "]                          |\n"+
+                "|  Nome: [" + this.getNome() + "]                   |\n"+
+                "|  Quantidade: [" + this.getQuantidade() + "]                 |\n" +
+                "|  Preço: [" + Utilis.doubleToString(this.getPreco()) + "]               |\n" +
+                "|  Tipo: [" + this.getTipo() + "]                 |";
+    }
 }

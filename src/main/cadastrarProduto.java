@@ -1,6 +1,8 @@
 package main;
 
+import modelo.Fruta;
 import modelo.Produto;
+import modelo.Verdura;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,7 +12,6 @@ import static main.Mercado.menu;
 public class cadastrarProduto {
 
     public static ArrayList<Produto> listaProdutos = new ArrayList<>();
-
 
     public static void cadastrar(){
         Scanner inputCadastro = new Scanner(System.in);
@@ -24,7 +25,6 @@ public class cadastrarProduto {
         while (!precoValido) {
             System.out.println("Informe o preço do produto: ");
             String precoStr = inputCadastro.nextLine();
-//Tratamento de ERROS
             try {
                 preco = Double.parseDouble(precoStr.replace(",", "."));
                 precoValido = true;
@@ -35,11 +35,23 @@ public class cadastrarProduto {
 
         System.out.println("Informe a quantidade: ");
         int quantidade = inputCadastro.nextInt();
+        inputCadastro.nextLine(); // Limpa o buffer
 
-        Produto novoProduto = new Produto(nome, preco, quantidade);
+        // ✅ Solicita tipo do produto
+        System.out.println("Informe o tipo do produto [1 - Fruta | 2 - Verdura]: ");
+        int tipo = inputCadastro.nextInt();
+
+        Produto novoProduto;
+
+        if (tipo == 1) {
+            novoProduto = new Fruta(nome, preco, quantidade);
+        } else {
+            novoProduto = new Verdura(nome, preco, quantidade);
+        }
+
         listaProdutos.add(novoProduto);
-
         System.out.println("Produto cadastrado com sucesso!");
+
         menu();
     }
 }
