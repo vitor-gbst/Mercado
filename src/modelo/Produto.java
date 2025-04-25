@@ -15,7 +15,7 @@ public abstract class Produto {
         this.preco = preco;
         this.quantidade = quantidade;
     }
-
+    // Getters e setters
     public int getQuantidade() {
         return quantidade;
     }
