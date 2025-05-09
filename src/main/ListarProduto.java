@@ -22,6 +22,7 @@ public class ListarProduto {
 
         for(int i = 0; i < listaProdutos.size(); i++){
             Produto produto = listaProdutos.get(i);// listaProdutos é uma lista que contém objetos Produto
+            //associação
             System.out.println(produto);
             System.out.println(" ___________________________________ \n");
         }
