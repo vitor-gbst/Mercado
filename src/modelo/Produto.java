@@ -4,7 +4,7 @@ import utilis.Utilis;
 
 public abstract class Produto {
     private static int count = 1;
-    private int id;
+    private int id;//associação com ListarProduto, essa associação e unidirecional visto que a lista de produtos associa produto pelo id e produto nao associa lista de produtos de nenhuma forma por isso é unidirecional
     private String nome;
     private Double preco;
     private int quantidade;
