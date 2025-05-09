@@ -5,7 +5,7 @@ import modelo.Produto;
 
 import static main.Mercado.menu;
 
-public class Entrada extends OperacaoEstoque {// Associação: Entrada depende de Produto para atualizar estoque
+public class Entrada extends OperacaoEstoque {
     // Entrada e Saída de produtos têm uma associação com Produto, interagindo com os objetos Produto sem alterar seu ciclo de vida.
 //Polimorfismo
     @Override
