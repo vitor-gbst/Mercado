@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Mercado {
     private static Scanner input = new Scanner(System.in);
     private static ArrayList <Produto> produtos; // Agregação: Mercado "tem" produtos, mas eles existem independentemente
-    //dependencia 
+    //Dependência
     // Mercado "agrega" os produtos, mas os produtos não são destruídos quando o Mercado é destruído.
     public static void main(String[] args) {
         produtos = new ArrayList<>();
