@@ -2,18 +2,31 @@ package modelo;
 
 import utilis.Utilis;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public abstract class Produto {
     private static int count = 1;
     private int id;//associação com ListarProduto, essa associação e unidirecional visto que a lista de produtos associa produto pelo id e produto nao associa lista de produtos de nenhuma forma por isso é unidirecional
     private String nome;
     private Double preco;
     private int quantidade;
+    private Date validade;
 
-    public Produto(String nome, Double preco, int quantidade) {
+    public Produto(String nome, Double preco, int quantidade, Date validade) {
         this.id = Produto.count++;
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
+        this.validade = validade;
+    }
+
+    public Date getValidade() {
+        return validade;
+    }
+
+    public void setValidade(Date validade){
+        this.validade = validade;
     }
 
     public int getQuantidade() {
@@ -48,10 +61,12 @@ public abstract class Produto {
     public abstract String getTipo();
 
     public String toString(){
-        return "|  Id: [" + this.getId() + "]                          |\n"+
-                "|  Nome: [" + this.getNome() + "]                   |\n"+
-                "|  Quantidade: [" + this.getQuantidade() + "]                 |\n" +
-                "|  Preço: [" + Utilis.doubleToString(this.getPreco()) + "]               |\n" +
-                "|  Tipo: [" + this.getTipo() + "]                 |";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return "|  Id: [" + this.getId() + "]\n"+
+                "|  Nome: [" + this.getNome() + "]\n"+
+                "|  Quantidade: [" + this.getQuantidade() + "]\n" +
+                "|  Preço: [" + Utilis.doubleToString(this.getPreco()) + "]\n" +
+                "|  Tipo: [" + this.getTipo() + "]\n" +
+                "|  Validade: [" + sdf.format(this.getValidade()) + "]";
     }
 }

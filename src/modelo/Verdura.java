@@ -1,8 +1,10 @@
 package modelo;
 
+import java.util.Date;
+
 public class Verdura extends Produto {
-    public Verdura(String nome, double preco, int quantidade) {
-        super(nome, preco, quantidade);
+    public Verdura(String nome, double preco, int quantidade, Date validade) {
+        super(nome, preco, quantidade, validade);
     }
 
     @Override
