@@ -3,14 +3,14 @@ package main;
 import modelo.Fruta;
 import modelo.Produto;
 import modelo.Verdura;
+import modelo.ProdutoFactory; // Importação da nova interface ProdutoFactory
+import modelo.FrutaFactory;   // Importação da nova FrutaFactory
+import modelo.VerduraFactory; // Importação da nova VerduraFactory
 import utilis.ValidarData;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-
-
-
 
 import static main.Mercado.menu;
 
@@ -57,18 +57,26 @@ public class cadastrarProduto {
             }
         }
 
-
         // ✅ Solicita tipo do produto
         System.out.println("Informe o tipo do produto [1 - Fruta | 2 - Verdura]: ");
         int tipo = inputCadastro.nextInt();
 
-        Produto novoProduto;
+        // 🟢 INÍCIO DA APLICAÇÃO DO PADRÃO FACTORY METHOD
+        // Agora, a classe cadastrarProduto não instancia diretamente Fruta ou Verdura.
+        // Em vez disso, ela usa uma "fábrica" para criar o produto.
+        // Isso desacopla a lógica de criação da lógica de uso.
+        ProdutoFactory factory; // Declara uma variável do tipo da interface da fábrica
 
         if (tipo == 1) {
-            novoProduto = new Fruta(nome, preco, quantidade, validade);
+            factory = new FrutaFactory(); // Se for Fruta, usa a Fábrica de Frutas
         } else {
-            novoProduto = new Verdura(nome, preco, quantidade, validade);
+            factory = new VerduraFactory(); // Caso contrário, usa a Fábrica de Verduras
         }
+
+        // Delega a criação do produto para a fábrica selecionada.
+        // A classe cadastrarProduto não sabe (e não precisa saber) como Fruta ou Verdura são construídas internamente.
+        Produto novoProduto = factory.criarProduto(nome, preco, quantidade, validade);
+        // 🟢 FIM DA APLICAÇÃO DO PADRÃO FACTORY METHOD
 
         listaProdutos.add(novoProduto);
         System.out.println("Produto cadastrado com sucesso!");
