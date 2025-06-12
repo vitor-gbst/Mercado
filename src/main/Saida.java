@@ -2,8 +2,10 @@ package main;
 
 import modelo.OperacaoEstoque;
 import modelo.Produto;
+import utilis.Persistencia;
 
 import static main.Mercado.menu;
+import static main.cadastrarProduto.listaProdutos;
 
 public class Saida extends OperacaoEstoque {
 //polimorfismo
@@ -20,6 +22,7 @@ public class Saida extends OperacaoEstoque {
 
             if (qtd > 0 && qtd <= produto.getQuantidade()) {
                 produto.setQuantidade(produto.getQuantidade() - qtd);
+                Persistencia.salvarProdutos(listaProdutos);
                 System.out.println("Estoque atualizado com sucesso!");
             } else {
                 System.out.println("Quantidade inválida ou insuficiente em estoque.");

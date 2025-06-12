@@ -1,11 +1,7 @@
 package main;
 
-import modelo.Fruta;
-import modelo.Produto;
-import modelo.Verdura;
-import modelo.ProdutoFactory; // Importação da nova interface ProdutoFactory
-import modelo.FrutaFactory;   // Importação da nova FrutaFactory
-import modelo.VerduraFactory; // Importação da nova VerduraFactory
+import modelo.*;
+import utilis.Persistencia;
 import utilis.ValidarData;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,7 +12,7 @@ import static main.Mercado.menu;
 
 public class cadastrarProduto {
 
-    public static ArrayList<Produto> listaProdutos = new ArrayList<>();
+    public static ArrayList<Produto> listaProdutos = Persistencia.carregarProdutos();
 
     public static void cadastrar(){
         Scanner inputCadastro = new Scanner(System.in);
@@ -77,10 +73,18 @@ public class cadastrarProduto {
         // A classe cadastrarProduto não sabe (e não precisa saber) como Fruta ou Verdura são construídas internamente.
         Produto novoProduto = factory.criarProduto(nome, preco, quantidade, validade);
         // 🟢 FIM DA APLICAÇÃO DO PADRÃO FACTORY METHOD
+        if (novoProduto.getTipo().equals("Fruta")) {
+            novoProduto.setCalculoPrecoStrategy(new DezPorcentoDescontoStrategy());
+        } else {
+            novoProduto.setCalculoPrecoStrategy(new SemDescontoStrategy());
+        }
 
         listaProdutos.add(novoProduto);
+        Persistencia.salvarProdutos(listaProdutos);
         System.out.println("Produto cadastrado com sucesso!");
 
-        menu();
+    }
+    public static void setListaProdutos(ArrayList<Produto> produtoExternos){
+        listaProdutos = produtoExternos;
     }
 }

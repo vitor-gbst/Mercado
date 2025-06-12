@@ -6,13 +6,16 @@ import modelo.Produto;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import utilis.Persistencia;
+
 public class Mercado {
     private static Scanner input = new Scanner(System.in);
     private static ArrayList <Produto> produtos; // Agregação: Mercado "tem" produtos, mas eles existem independentemente
     //Dependência
     // Mercado "agrega" os produtos, mas os produtos não são destruídos quando o Mercado é destruído.
     public static void main(String[] args) {
-        produtos = new ArrayList<>();
+        produtos = Persistencia.carregarProdutos();
+        cadastrarProduto.setListaProdutos(produtos);
         menu();
     }
     public static void menu(){
@@ -35,39 +38,37 @@ public class Mercado {
             if (input.hasNextInt()){
                 option = input.nextInt();
                 input.nextLine();
-                if(option >=1 && option <=5){
-                    break;
-                }
-                else {
-                    System.out.println("Erro, digite uma das cinco opções.");
+
+                switch (option){
+                    case 1:
+                        cadastrarProduto.cadastrar();
+                        break;
+                    case 2:
+                        ListarProduto.listar();
+                        break;
+                    case 3:
+                        OperacaoEstoque entrada = new Entrada();
+                        entrada.executar();
+                        break;
+                    case 4:
+                        OperacaoEstoque saida = new Saida();
+                        saida.executar();
+                        break;
+
+                    case 5:
+                        System.out.println("Obrigado pela preferência!");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Erro: Digite uma das 5 opções.");
                 }
             }else {
                 System.out.println("Erro, digite um valor válido.");
                 input.nextLine();
             }
+
+
+
         }
-
-            switch (option){
-                case 1:
-                    cadastrarProduto.cadastrar();
-                    break;
-                case 2:
-                    ListarProduto.listar();
-                    break;
-                case 3:
-                    OperacaoEstoque entrada = new Entrada();
-                    entrada.executar();
-                    break;
-                case 4:
-                    OperacaoEstoque saida = new Saida();
-                    saida.executar();
-                    break;
-
-                case 5:
-                    System.out.println("Obrigado pela preferência!");
-                    System.exit(0);
-                    break;
-            }
-
     }
 }

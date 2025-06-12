@@ -2,8 +2,10 @@ package main;
 
 import modelo.OperacaoEstoque;
 import modelo.Produto;
+import utilis.Persistencia;
 
 import static main.Mercado.menu;
+import static main.cadastrarProduto.listaProdutos;
 
 public class Entrada extends OperacaoEstoque {
     // Entrada e Saída de produtos têm uma associação com Produto, interagindo com os objetos Produto sem alterar seu ciclo de vida.
@@ -21,6 +23,7 @@ public class Entrada extends OperacaoEstoque {
 
             if (qtd > 0) {
                 produto.setQuantidade(produto.getQuantidade() + qtd);
+                Persistencia.salvarProdutos(listaProdutos);
                 System.out.println("Estoque atualizado com sucesso!");
             } else {
                 System.out.println("Quantidade inválida.");
