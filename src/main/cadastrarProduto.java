@@ -3,16 +3,23 @@ package main;
 import modelo.*;
 import utilis.Persistencia;
 import utilis.ValidarData;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-import static main.Mercado.menu;
+
 
 public class cadastrarProduto {
 
-    public static ArrayList<Produto> listaProdutos = Persistencia.carregarProdutos();
+
+    public static ArrayList<Produto> listaProdutos;
+
+
+    /*
+    static {
+        listaProdutos = Persistencia.carregarProdutos();
+    }
+    */
 
     public static void cadastrar(){
         Scanner inputCadastro = new Scanner(System.in);
@@ -53,38 +60,39 @@ public class cadastrarProduto {
             }
         }
 
-        // ✅ Solicita tipo do produto
         System.out.println("Informe o tipo do produto [1 - Fruta | 2 - Verdura]: ");
         int tipo = inputCadastro.nextInt();
 
-        // 🟢 INÍCIO DA APLICAÇÃO DO PADRÃO FACTORY METHOD
-        // Agora, a classe cadastrarProduto não instancia diretamente Fruta ou Verdura.
-        // Em vez disso, ela usa uma "fábrica" para criar o produto.
-        // Isso desacopla a lógica de criação da lógica de uso.
-        ProdutoFactory factory; // Declara uma variável do tipo da interface da fábrica
+        ProdutoFactory factory;
 
         if (tipo == 1) {
-            factory = new FrutaFactory(); // Se for Fruta, usa a Fábrica de Frutas
+            factory = new FrutaFactory();
         } else {
-            factory = new VerduraFactory(); // Caso contrário, usa a Fábrica de Verduras
+            factory = new VerduraFactory();
         }
 
-        // Delega a criação do produto para a fábrica selecionada.
-        // A classe cadastrarProduto não sabe (e não precisa saber) como Fruta ou Verdura são construídas internamente.
         Produto novoProduto = factory.criarProduto(nome, preco, quantidade, validade);
-        // 🟢 FIM DA APLICAÇÃO DO PADRÃO FACTORY METHOD
+
         if (novoProduto.getTipo().equals("Fruta")) {
             novoProduto.setCalculoPrecoStrategy(new DezPorcentoDescontoStrategy());
         } else {
             novoProduto.setCalculoPrecoStrategy(new SemDescontoStrategy());
         }
 
+        // Garante que listaProdutos não seja nula quando um produto é cadastrado pela primeira vez
+        // (embora com as mudanças no Mercado.main isso deve ser garantido)
+        if (listaProdutos == null) {
+            listaProdutos = new ArrayList<>();
+        }
         listaProdutos.add(novoProduto);
-        Persistencia.salvarProdutos(listaProdutos);
+        Persistencia.salvarProdutos(listaProdutos); // Salva após cada cadastro
         System.out.println("Produto cadastrado com sucesso!");
 
+
     }
+
     public static void setListaProdutos(ArrayList<Produto> produtoExternos){
+
         listaProdutos = produtoExternos;
     }
 }

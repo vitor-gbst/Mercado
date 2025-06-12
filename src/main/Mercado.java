@@ -1,8 +1,7 @@
 package main;
 
 import modelo.OperacaoEstoque;
-import modelo.Produto;
-
+import modelo.Produto; // Certifique-se de que Produto está importado
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,14 +9,17 @@ import utilis.Persistencia;
 
 public class Mercado {
     private static Scanner input = new Scanner(System.in);
-    private static ArrayList <Produto> produtos; // Agregação: Mercado "tem" produtos, mas eles existem independentemente
-    //Dependência
-    // Mercado "agrega" os produtos, mas os produtos não são destruídos quando o Mercado é destruído.
+
     public static void main(String[] args) {
-        produtos = Persistencia.carregarProdutos();
-        cadastrarProduto.setListaProdutos(produtos);
+        // O carregamento e a sincronização do ID já são feitos em Persistencia.carregarProdutos().
+        // Apenas precisamos passar a lista carregada para cadastrarProduto.
+        ArrayList<Produto> produtosCarregados = Persistencia.carregarProdutos();
+        cadastrarProduto.setListaProdutos(produtosCarregados);
+
         menu();
     }
+
+    // O restante do método menu() permanece inalterado como na sua última correção.
     public static void menu(){
         int option;
 
@@ -33,8 +35,8 @@ public class Mercado {
             System.out.println("|      Opção [4] - Saída Produtos   |");
             System.out.println("|      Opção [5] - Sair             |");
             System.out.println(" ----------------------------------- ");
-            System.out.println("Escolher: ");
-// Tratamento de erro: garante que a entrada seja um número válido
+            System.out.print("Escolher: ");
+
             if (input.hasNextInt()){
                 option = input.nextInt();
                 input.nextLine();
@@ -54,8 +56,8 @@ public class Mercado {
                         OperacaoEstoque saida = new Saida();
                         saida.executar();
                         break;
-
                     case 5:
+                        Persistencia.salvarProdutos(cadastrarProduto.listaProdutos);
                         System.out.println("Obrigado pela preferência!");
                         System.exit(0);
                         break;
@@ -66,9 +68,6 @@ public class Mercado {
                 System.out.println("Erro, digite um valor válido.");
                 input.nextLine();
             }
-
-
-
         }
     }
 }

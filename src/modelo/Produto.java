@@ -8,8 +8,9 @@ import java.util.Date;
 
 public abstract class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
-    private static int count = 1;
-    private int id;//associação com ListarProduto, essa associação e unidirecional visto que a lista de produtos associa produto pelo id e produto nao associa lista de produtos de nenhuma forma por isso é unidirecional
+
+    private static int count;
+    private int id;
     private String nome;
     private Double preco;
     private int quantidade;
@@ -17,6 +18,8 @@ public abstract class Produto implements Serializable {
     private CalculoPrecoStrategy calculoPrecoStrategy;
 
     public Produto(String nome, Double preco, int quantidade, Date validade) {
+        // Atribui o ID e incrementa o contador estático.
+        // O valor inicial de 'count' será definido por Persistencia.
         this.id = Produto.count++;
         this.nome = nome;
         this.preco = preco;
@@ -61,15 +64,17 @@ public abstract class Produto implements Serializable {
         this.preco = preco;
     }
 
-    //  MÉTODO ABSTRATO A SER IMPLEMENTADO POR FRUTA E VERDURA
     public abstract String getTipo();
 
-    // NOVOS métodos para usar a estratégia de cálculo de preço
     public void setCalculoPrecoStrategy(CalculoPrecoStrategy strategy) {
         this.calculoPrecoStrategy = strategy;
     }
 
     public double getPrecoCalculado() {
+        // Garante que a estratégia não seja nula antes de calcular.
+        if (this.calculoPrecoStrategy == null) {
+            this.calculoPrecoStrategy = new SemDescontoStrategy(); // Estratégia padrão se não definida
+        }
         return calculoPrecoStrategy.calcularPreco(this.preco, this.quantidade);
     }
 
@@ -83,5 +88,10 @@ public abstract class Produto implements Serializable {
                 "|  Preço Total com desconto: [" + Utilis.doubleToString(this.getPrecoCalculado()) + "]\n" +
                 "|  Tipo: [" + this.getTipo() + "]\n" +
                 "|  Validade: [" + sdf.format(this.getValidade()) + "]";
+    }
+
+    // 🟢 NOVO MÉTODO: Para permitir que Persistencia atualize o 'count' estático.
+    public static void setNextId(int nextId) {
+        Produto.count = nextId;
     }
 }

@@ -7,7 +7,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
-import static main.Mercado.menu;
+// 🟢 CORREÇÃO 3: Removida a importação estática de Mercado.menu.
+// import static main.Mercado.menu;
 import static main.cadastrarProduto.listaProdutos;
 
 public class ListarProduto {
@@ -39,11 +40,12 @@ public class ListarProduto {
             input.nextLine(); // Limpa o buffer
 
             if (opcao == 7) {
-                menu();
+
                 return;
             }
 
-            if (listaProdutos.isEmpty()) {
+            // Adicionado null check para listaProdutos para maior robustez
+            if (listaProdutos == null || listaProdutos.isEmpty()) {
                 System.out.println("Nenhum produto cadastrado.");
                 continue;
             }
@@ -92,6 +94,10 @@ public class ListarProduto {
     }
 
     private static void mostrarMaisCaroMaisBarato() {
+        if (listaProdutos.isEmpty()) {
+            System.out.println("Nenhum produto para comparar.");
+            return;
+        }
         Produto maisCaro = Collections.max(listaProdutos, Comparator.comparing(Produto::getPreco));
         Produto maisBarato = Collections.min(listaProdutos, Comparator.comparing(Produto::getPreco));
 
@@ -102,6 +108,10 @@ public class ListarProduto {
     }
 
     private static void mostrarMaiorMenorQuantidade() {
+        if (listaProdutos.isEmpty()) {
+            System.out.println("Nenhum produto para comparar.");
+            return;
+        }
         Produto maiorQtd = Collections.max(listaProdutos, Comparator.comparing(Produto::getQuantidade));
         Produto menorQtd = Collections.min(listaProdutos, Comparator.comparing(Produto::getQuantidade));
 
@@ -112,6 +122,10 @@ public class ListarProduto {
     }
 
     private static void mostrarValidadeMaisProxima() {
+        if (listaProdutos.isEmpty()) {
+            System.out.println("Nenhum produto para comparar.");
+            return;
+        }
         Produto validadeMaisProxima = Collections.min(listaProdutos, Comparator.comparing(Produto::getValidade));
 
         System.out.println("---- Produto com validade mais próxima ----");
@@ -127,5 +141,4 @@ public class ListarProduto {
             System.out.println(" ___________________________________ \n");
         }
     }
-
 }

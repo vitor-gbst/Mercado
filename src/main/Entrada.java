@@ -4,12 +4,11 @@ import modelo.OperacaoEstoque;
 import modelo.Produto;
 import utilis.Persistencia;
 
-import static main.Mercado.menu;
+// 🟢 CORREÇÃO 3: Removida a importação estática de Mercado.menu.
+// import static main.Mercado.menu;
 import static main.cadastrarProduto.listaProdutos;
 
 public class Entrada extends OperacaoEstoque {
-    // Entrada e Saída de produtos têm uma associação com Produto, interagindo com os objetos Produto sem alterar seu ciclo de vida.
-//Polimorfismo
     @Override
     public void executar() {
         System.out.println("Informe o ID do produto para entrada de estoque:");
@@ -23,7 +22,7 @@ public class Entrada extends OperacaoEstoque {
 
             if (qtd > 0) {
                 produto.setQuantidade(produto.getQuantidade() + qtd);
-                Persistencia.salvarProdutos(listaProdutos);
+                Persistencia.salvarProdutos(listaProdutos); // Salva após a alteração
                 System.out.println("Estoque atualizado com sucesso!");
             } else {
                 System.out.println("Quantidade inválida.");
@@ -32,6 +31,6 @@ public class Entrada extends OperacaoEstoque {
             System.out.println("Produto não encontrado.");
         }
 
-        menu();
+
     }
 }
